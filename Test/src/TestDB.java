@@ -4,18 +4,21 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import kk.DB.DBConn;
 import kk.DB.DBHelper;
 import kk.Util.Config;
 
 
 public class TestDB {
 
-	public static void main(String[] args) throws FileNotFoundException, IOException {
+	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 //		String connPropFilePath =  Thread.currentThread().getContextClassLoader().getResource("").getPath()+"conn.properties";
 //		System.out.println(connPropFilePath);
@@ -47,6 +50,17 @@ public class TestDB {
 		//DBHelper.InitDBHelper(Thread.currentThread().getContextClassLoader().getResource("").getPath());
 		Config.Init(Thread.currentThread().getContextClassLoader().getResource("").getPath() + "KKConfig.properties");
 		DBHelper.InitDBHelper();
+		DBConn conn = DBHelper.GetDefaultConn();
+		ResultSet rs = conn.ExecQueryRS("SELECT * FROM `UserInfo`");
+		if(rs.next()) {
+			System.out.println(rs.getString(0));
+		}
+		else
+		{
+			System.out.println("未查询到数据");
+		}
+		conn.ExecUpdate("INSERT INTO `t1` VALUES (?,?)",2,3);
+		conn.CloseAll();
 	}
 
 }
