@@ -6,5 +6,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/KDO"/>
+	<classpathentry kind="lib" path="lib/mssql-jdbc-7.0.0.jre10.jar"/>
+	<classpathentry kind="lib" path="lib/mariadb-java-client-2.4.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
