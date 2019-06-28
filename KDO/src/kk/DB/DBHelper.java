@@ -45,12 +45,12 @@ public class DBHelper {
 		    	String dcString = GetDBDriverClass(patternDBType,value);
 		    	String dbClassName = dbDrivers.getProperty(dcString);
 		    	DBConn dbConn = new DBConn(value, dbUserName, dbUserPass, dbClassName);
-		    	dbConn.GetConn();
+
 		    	if(!_Inited) {
 		    		_Inited = true;
 		    		_DefaultConnName = dbName;
 		    	}
-		    	
+		    	_DBConnList.put(dbName, dbConn);
 		    	System.out.println(dbName + ":" + dbUserName + "," + dbUserPass + " - " + dbClassName);
 		    }
 		}
