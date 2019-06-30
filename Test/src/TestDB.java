@@ -51,15 +51,15 @@ public class TestDB {
 		Config.Init(Thread.currentThread().getContextClassLoader().getResource("").getPath() + "KKConfig.properties");
 		DBHelper.InitDBHelper();
 		DBConn conn = DBHelper.GetDefaultConn();
-		ResultSet rs = conn.ExecQueryRS("SELECT * FROM `UserInfo`");
+		ResultSet rs = conn.ExecQueryRS("SELECT * FROM `t1`");
 		if(rs.next()) {
-			System.out.println(rs.getString(0));
+			System.out.println(rs.getInt("F1"));
 		}
 		else
 		{
 			System.out.println("未查询到数据");
 		}
-		conn.ExecUpdate("INSERT INTO `t1` VALUES (?,?)",2,3);
+		//conn.ExecUpdate("INSERT INTO `t1` VALUES (?,?)",2,3);
 		conn.CloseAll();
 	}
 
